@@ -22,10 +22,10 @@ public class ResponseResultInterceptor implements HandlerInterceptor {
             Class<?> clazz = handlerMethod.getBeanType();
             Method method = handlerMethod.getMethod();
             if (clazz.isAnnotationPresent(ResponseResult.class)) {
-                // 注解类
+                // 注解 类
                 request.setAttribute(ConstantConfig.KEY_JSON_RESPONSE_RESULT_ANN, clazz.getAnnotation(ResponseResult.class));
             } else if (method.isAnnotationPresent(ResponseResult.class)) {
-                // 注解方法
+                // 注解 方法
                 request.setAttribute(ConstantConfig.KEY_JSON_RESPONSE_RESULT_ANN, method.getAnnotation(ResponseResult.class));
             }
         }

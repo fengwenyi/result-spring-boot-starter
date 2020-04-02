@@ -1,6 +1,7 @@
 package com.fengwenyi.result;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fengwenyi.api_result.helper.ResultHelper;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -35,12 +36,17 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
         // String
         if (body instanceof String) {
             serverHttpResponse.getHeaders().setContentType(MediaType.parseMediaType(MediaType.APPLICATION_JSON_VALUE));
-            return JSON.toJSONString(ResultHelper.success("Success", body));
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                return mapper.writeValueAsString(ResultHelper.success("Success", body));
+            } catch (JsonProcessingException e) {
+                return ResultHelper.error("Object to Json String Exception : " + e.getMessage());
+            }
         }
-        // error
-        if (body instanceof ErrorResult) {
-            ErrorResult errorResult = (ErrorResult) body;
-            return ResultHelper.error(errorResult.getMessage());
+        // exception
+        if (body instanceof ResultException) {
+            ResultException resultException = (ResultException) body;
+            return ResultHelper.error(resultException.getMessage());
         }
         return ResultHelper.success("Success", body);
     }

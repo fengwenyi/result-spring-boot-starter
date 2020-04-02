@@ -1,20 +1,26 @@
 package com.fengwenyi.result;
 
 /**
- * 错误返回
+ * 异常结果
  * @author Erwin Feng
  * @since 2020/4/2
  */
-public class ErrorResult {
+public class ResultException {
 
-    /** 错误信息 */
+    /** 异常信息 */
     private String message;
+
+    /**
+     * 无参构造方法
+     */
+    public ResultException() {
+    }
 
     /**
      * 构造方法
      * @param message message
      */
-    public ErrorResult(String message) {
+    public ResultException(String message) {
         this.message = message;
     }
 
@@ -29,9 +35,9 @@ public class ErrorResult {
     /**
      * set message
      * @param message message
-     * @return {@link ErrorResult}
+     * @return {@link ResultException}
      */
-    public ErrorResult setMessage(String message) {
+    public ResultException setMessage(String message) {
         this.message = message;
         return this;
     }
