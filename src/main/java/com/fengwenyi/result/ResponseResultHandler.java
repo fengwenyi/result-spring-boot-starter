@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2020/4/2 5:18 下午
  */
 @ControllerAdvice
-public class ResponseHandler implements ResponseBodyAdvice<Object> {
+public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {

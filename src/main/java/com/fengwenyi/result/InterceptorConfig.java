@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @since 2020/4/2 5:22 下午
  */
 @Configuration
-@ComponentScan(basePackageClasses = ResponseHandler.class)
+@ComponentScan(basePackageClasses = ResponseResultHandler.class)
 public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
